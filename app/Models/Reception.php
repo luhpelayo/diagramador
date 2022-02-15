@@ -9,7 +9,7 @@ class Reception extends Tramite
     protected $table = 'receptions';
     protected $primaryKey='tramite_id';
     public $incrementing = false;
-    protected $fillable = ['tramite_id','procedencia','solicitante_id','process_id'];
+    protected $fillable = ['tramite_id','solicitante_id','process_id'];
 
     public function Tramite()
     {

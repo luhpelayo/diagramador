@@ -16,7 +16,7 @@ class CreateReceptionsTable extends Migration
         Schema::create('receptions', function (Blueprint $table) {
             $table->increments('tramite_id');
            
-            $table->string('procedencia');
+     
             $table->integer('solicitante_id')->unsigned();
             $table->foreign('solicitante_id')->references('id')->on('solicitantes')
                   ->onDelete('cascade')

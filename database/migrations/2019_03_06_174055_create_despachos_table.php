@@ -15,9 +15,7 @@ class CreateDespachosTable extends Migration
     {
         Schema::create('despachos', function (Blueprint $table) {
             $table->increments('tramite_id');
-            $table->string('destinatario');
-            $table->string('reponsable');
-           
+            
             $table->foreign('tramite_id')->references('id')->on('tramites')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');

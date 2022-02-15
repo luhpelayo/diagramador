@@ -3,7 +3,7 @@
 @section('content')
 <div class="box box-primary">
 <div class="page-header text-center">
-    <h1>TRAMITES
+    <h1>Modelo C4
 
     </h1>
 </div>
@@ -12,11 +12,12 @@
         <thead>
             <tr>
                 <th>Estado</th>
-                <th>Fecha de recepcion</th>
-                <th>Nro.Oficio</th>
-                <th>Referencia</th>  
-                <th>Tipo recepcion</th>
-                <th>Atendido</th>
+                <th>Fecha de creacion</th>
+                <th>Privacidad</th>
+                <th>Nombre del Proyecto</th>  
+                <th>Modelo</th>
+                <th>Usuario</th>
+               
                 <th text-center style="width: 120px;">Acciones </th>
             </tr>
         </thead>         
@@ -24,13 +25,13 @@
     @foreach($tramites4 as $tramite)
          <tr>
             <th>
-            <span class="label label-info">Recibido</span>
+            <span class="label label-info">Nivel 4</span>
                 
 
              </th>    
              <td>{{ $tramite->created_at}}</td>
-             <td>{{ $tramite->nroficio }}</td> 
-             <td>{{ $tramite->referencia }}</td>
+             <td>{{ $tramite->nromodelo }}</td> 
+             <td>{{ $tramite->nombremodelo }}</td>
              <td>{{ $tramite->tipo }}</td>
              <td>{{ $tramite->user_id}}</td>    
            

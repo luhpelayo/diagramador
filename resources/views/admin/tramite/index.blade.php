@@ -1,7 +1,7 @@
 @section('content')
 <div class="box box-primary">
 <div class="page-header text-center">
-    <h1>TRAMITES
+    <h1> MODELO C4 NIVEL 4
         @can('tramite.create') 
         <a href="{{ route('tramite.create') }}" class="btn btn-success"><i class="fa fa-plus-circle"></i> Nuevo</a>
         @endcan
@@ -12,11 +12,14 @@
         <thead>
             <tr>
                 <th>Estado</th>
-                <th>Fecha de recepcion</th>
-                <th>Nro.Oficio</th>
-                <th>Referencia</th>  
-                <th>Tipo recepcion</th>
-                <th>Atendido</th>
+                <th>Fecha de creacion</th>
+                <th>Privacidad</th>
+                <th>Nombre del Proyecto</th>  
+                <th>Modelo</th>
+                <th>Usuario</th>
+                <th>Nro. Modelo</th>
+              
+              
                 <th text-center style="width: 120px;">Acciones </th>
             </tr>
         </thead>         
@@ -26,21 +29,21 @@
          <tr>
             <th>
             @if($tramite->estado_id == '1')
-                    <span class="label label-info">Recibido</span>
+                    <span class="label label-info">Solo Yo</span>
                 @else
-                    <span class="label label-danger">Derivado</span>
+                    <span class="label label-danger">Compartido</span>
                 @endif
 
                 @extends('admin.template')
 
              </th>    
              <td>{{ $tramite->created_at}}</td>
-             <td>{{ $tramite->nroficio }}</td> 
-             <td>{{ $tramite->referencia }}</td>
+             <td>{{ $tramite->nromodelo }}</td> 
+             <td>{{ $tramite->nombreproyecto }}</td>
              <td>{{ $tramite->tipo }}</td>
              <td>{{ $tramite->user_id}}</td>    
+             <td>{{ $tramite->id}}</td>   
            
-    
             <td>
              
  
@@ -50,7 +53,7 @@
                 </a>
              
         
-
+            
                 
                 
                 @can('tramite.edit')
@@ -58,6 +61,7 @@
                     <i class="fa fa-pencil-square"></i>
                 </a>
                 @endcan
+
                @can('roles.destroy')
               {!! Form::open(['route' => ['tramite.destroy', $tramite],'style'=>'display:inline']) !!}
                         <input type="hidden" name="_method" value="DELETE">
@@ -66,6 +70,10 @@
                         </button>
               {!! Form::close() !!}  
               @endcan 
+              <a href="{{ route('tramite.indexnivel4', $tramite->id) }}" class="btn btn-primary">
+                    <i class="fa fa-pencil-square"></i> Pizarra
+                </a>
+             
             </td> 
         </tr>
     @endforeach

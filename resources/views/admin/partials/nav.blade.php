@@ -7,7 +7,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>LT</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>INGENIERIA</b>FINANCIERA</span>
+          <span class="logo-lg"><b>Pizarra</b>Pelayo</span>
 
         </a>
 
@@ -83,6 +83,56 @@
               </ul>
             </li>
            @endcan
+
+         
+           @can('sliders.index' || 'area.index' || 'requirements.index' || 'processes.index' || 'estado.index' || 'solicitante.index')
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-cog"></i> <span>Nuevo Proyecto</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                  @can('sliders.index')
+                  <li class="active"><a href="{{ route('sliders.index') }}"><i class="fa fa-circle-o"></i>Sliders</a></li>
+                  @endcan
+                  @can('area.index')
+                  <li class="active"><a href="{{ route('area.index') }}"><i class="fa fa-circle-o"></i>Areas</a></li>
+                  @endcan
+                  @can('requirements.index')
+                  <li><a href="{{ route('requirements.index') }}"><i class="fa fa-circle-o"></i>Requisitos</a></li>
+                  @endcan
+                  @can('processes.index')
+                  <li><a href="{{ route('processes.index') }}"><i class="fa fa-circle-o"></i>Procesos</a></li>
+                  @endcan
+                  @can('estado.index')
+                  <li><a href="{{ route('estado.index') }}"><i class="fa fa-circle-o"></i>Estados</a></li>
+                  @endcan
+                  @can('solicitante.index')
+                  <li><a href="{{ route('solicitante.index') }}"><i class="fa fa-circle-o"></i>Solicitantes</a></li>
+                  @endcan
+              </ul>
+            </li>
+            @endcan
+
+           @can('tramite.index')
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-file-word-o"></i><span>Cargar Proyecto</span><i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                
+                <li><a href="{{ route('indexdespachado') }}"><i class="fa fa-circle-o"></i>Nivel 1</a></li>
+                <li><a href="{{ route('tramite.index') }}"><i class="fa fa-circle-o"></i>Nivel 4</a></li>
+
+
+                <li><a href="{{ route('tramite.index') }}"><i class="fa fa-circle-o"></i>Recepcion</a></li>
+                <li><a href="{{ route('tramite.index') }}"><i class="fa fa-circle-o"></i>Recibido</a></li>
+                <li><a href="{{ route('indexdespachado') }}"><i class="fa fa-circle-o"></i>Despacho</a></li>
+                <li><a href="{{ route('indexrechazada') }}"><i class="fa fa-circle-o"></i>Solicitudes No Terminadas</a></li>
+                <li><a href="{{ route('indexaceptada') }}"><i class="fa fa-circle-o"></i>Solicitudes Terminadas</a></li>
+              </ul>
+            </li>
+            @endcan
+
            @can('sliders.index' || 'area.index' || 'requirements.index' || 'processes.index' || 'estado.index' || 'solicitante.index')
             <li class="treeview">
               <a href="#">
@@ -113,15 +163,15 @@
             @can('tramite.index')
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-file-word-o"></i><span>Tramites</span><i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-file-word-o"></i><span>Orden de trabajo</span><i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 
                 <li><a href="{{ route('tramite.index') }}"><i class="fa fa-circle-o"></i>Recepcion</a></li>
                 <li><a href="{{ route('tramite.index') }}"><i class="fa fa-circle-o"></i>Recibido</a></li>
                 <li><a href="{{ route('indexdespachado') }}"><i class="fa fa-circle-o"></i>Despacho</a></li>
-                <li><a href="{{ route('indexrechazada') }}"><i class="fa fa-circle-o"></i>Solicitudes Rechazadas</a></li>
-                <li><a href="{{ route('indexaceptada') }}"><i class="fa fa-circle-o"></i>Solicitudes Aceptadas</a></li>
+                <li><a href="{{ route('indexrechazada') }}"><i class="fa fa-circle-o"></i>Solicitudes No Terminadas</a></li>
+                <li><a href="{{ route('indexaceptada') }}"><i class="fa fa-circle-o"></i>Solicitudes Terminadas</a></li>
               </ul>
             </li>
             @endcan
@@ -138,7 +188,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-pie-chart"></i>
-                <span>Datos Estudiantes</span>
+                <span>Reportes</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -230,7 +280,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 2.3.0
         </div>
-        <strong>Copyright &copy; 2019 <a href="#">Ingenieria Financiera</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2020 <a href="#">MKT Pelayo</a>.</strong> All rights reserved.
       </footer>
 
 

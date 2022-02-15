@@ -1,11 +1,11 @@
 <div class="form-group">
-                  <label class="control-label" for="tipo">Tipo Recepcion:</label>
+                  <label class="control-label" for="tipo">Modelo:</label>
                     {!! Form:: select(
                              'tipo',
                                 [
-                                  ''=>'Seleccione tipo de recepción',
-                                  'recepcion' => 'Recepción',
-                                  'despacho'=>'Despacho'
+                                    ''=>'Seleccione tipo de modelo',
+                                  'Nivel4' => 'Nivel 4',
+                                  'Nivel1'=>'Nivel 1'
                                 ],
                                 null,
                                    ['
@@ -14,11 +14,11 @@
                               )
                      !!}
                 </div>
-                <div class="form-group" id="nro_oficio" style="display: block;">
-                    <label for="nroficio">Nro. Oficio:</label>
+                <div class="form-group" id="nromodelo" style="display: block;">
+                    <label for="nromodelo">Nro. Modelo:</label>
                     {!! 
                         Form::text(
-                            'nroficio', 
+                            'nromodelo', 
                             null, 
                             array(
                                 'class'=>'form-control',
@@ -35,62 +35,22 @@
 
                       {!! Form::select('solicitante_id', $solicitantes, null, ['class' => 'form-control']) !!}
                 </div>
-                <div class="form-group" id="procedencia" style="display: block;">
-                  <label for="procedencia">Procedencia:</label>
+             
+                <div class="form-group" id="nombreproyecto" style="display: block;">
+                  <label for="nombreproyecto">Nombre Proyecto:</label>
                   {!! 
                       Form::text(
-                          'procedencia', 
+                          'nombreproyecto', 
                           null, 
                           array(
                               'class'=>'form-control',
-                              'placeholder' => 'Ingrese procedencia...',
+                              'placeholder' => 'Ingrese nombre...',
                                             'autofocus' => 'autofocus'
                           )
                       ) 
                   !!}
                 </div>
-                <div class="form-group" id="referencia" style="display: block;">
-                  <label for="referencia">Referencia:</label>
-                  {!! 
-                      Form::text(
-                          'referencia', 
-                          null, 
-                          array(
-                              'class'=>'form-control',
-                              'placeholder' => 'Ingrese referencia...',
-                                            'autofocus' => 'autofocus'
-                          )
-                      ) 
-                  !!}
-                </div>
-                <div class="form-group" id="destinatario" style="display: none;">
-                  <label for="destinatario">Destinatario:</label>
-                  {!! 
-                      Form::text(
-                          'destinatario', 
-                          null, 
-                          array(
-                              'class'=>'form-control',
-                              'placeholder' => 'Ingrese destinatario...',
-                                            'autofocus' => 'autofocus'
-                          )
-                      ) 
-                  !!}
-                </div>
-                <div class="form-group" id="responsable" style="display: none;">
-                  <label for="reponsable">Reponsable:</label>
-                  {!! 
-                      Form::text(
-                          'reponsable', 
-                          null, 
-                          array(
-                              'class'=>'form-control',
-                              'placeholder' => 'Ingrese reponsable...',
-                                            'autofocus' => 'autofocus'
-                          )
-                      ) 
-                  !!}
-                </div>
+                
                 <div class="form-group" id="proc" style="display: block;">
                       <label class="control-label" for="process_id">Proceso:</label>
                       {!! Form::select('process_id', $process, null, ['class' => 'form-control','id'=>'proces']) !!}

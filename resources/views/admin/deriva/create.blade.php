@@ -47,33 +47,30 @@
     });
     $("#SelectRecep").change(function(){
       var SelectRecep = $(this).val();
-      var nro_oficio = document.getElementById('nro_oficio');
+      var nromodelo = document.getElementById('nromodelo');
       var remitente = document.getElementById('remitente');
-      var procedencia = document.getElementById('procedencia');
-      var referencia = document.getElementById('referencia');
-      var destinatario = document.getElementById('destinatario');
-      var responsable = document.getElementById('responsable');
+   
+      var nombreproyecto = document.getElementById('nombreproyecto');
+    
       var proc = document.getElementById('proc');
       var req = document.getElementById('demos');
       if(SelectRecep== 'recepcion'){
         
-         nro_oficio.style.display = 'block';
+         nromodelo.style.display = 'block';
          remitente.style.display = 'block';
-         procedencia.style.display = 'block';
-         referencia.style.display = 'block';
-         destinatario.style.display = 'none';
-         responsable.style.display = 'none';
+      
+         nombreproyecto.style.display = 'block';
+         
          proc.style.display = 'block';
         
             
       }else if(SelectRecep == 'despacho'){
     
-         nro_oficio.style.display = 'block';
+         nromodelo.style.display = 'block';
          remitente.style.display = 'none';
-         procedencia.style.display = 'none';
-         referencia.style.display = 'block';
-         destinatario.style.display = 'block';
-         responsable.style.display = 'block';
+        
+         nombreproyecto.style.display = 'block';
+      
          proc.style.display = 'none';
          req.style.display = 'none'; 
       }

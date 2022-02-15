@@ -16,8 +16,8 @@ class CreateTramitesTable extends Migration
         Schema::create('tramites', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo',60);
-            $table->string('nroficio', 30);
-            $table->string('referencia', 255);
+            $table->string('nromodelo', 30);
+            $table->string('nombreproyecto', 255);
                  
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')

@@ -4,12 +4,12 @@
                 <div class="col-md-4 col-sm-6 footer_about">
                     <h2>SOBRE NOSOTROS</h2>
                     <!--<img src=" {{ asset ('images/images/footer-logo.png')}}" alt="">-->
-                    <p>La Carrera de Ingeniería Financiera es una de las Carreras Universitarias de Matemática, Economía y Finanzas que dicta la Universidad Autónoma Gabriel René Moreno.</p>
+                    <p>Proyectos enfocados en aumentar tus ventas, en hacer crecer tu negocio</p>
                     <ul class="socail_icon">
-                        <li><a href="https://www.facebook.com/Ingenier%C3%ADa-Financiera-UAGRM-Oficial-241656083410280/?modal=admin_todo_tour" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="https://www.instagram.com/yalasdelauagrm" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                        <li><a href="https://api.whatsapp.com/send?phone=59162207177&text=Hola!!" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.facebook.com/marketingypublicidadpl" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.twitter.com/mktpelayo" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.instagram.com/mktpelayo" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="https://wa.me/59161368450" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
                        
                     </ul>
                     
@@ -33,9 +33,9 @@
                     <h2>CONTACTOS</h2>
                     <address>
                         <ul class="my_address">
-                            <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>financierauagrm@gmail.com</a></li>
-                            <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>(591) 3599603</a></li>
-                            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Santa Cruz, Bolivia <br>   Av. Busch, Ciudad Universitaria - Modulo 265 </a></li>
+                            <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>mktpelayo@gmail.com</a></li>
+                            <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>(591) 61368450</a></li>
+                            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Santa Cruz, Bolivia <br>   Av. Busch, Ciudad Universitaria </a></li>
                         </ul>
                         
                     </address>
@@ -44,6 +44,6 @@
             </div>
         </div>
         <div class="col-md-12 col-sm-12 copyright_area">
-            <a href="{{route('/')}}">Ingeniería Financiera formando profesionales de éxito </a>
+            <a href="{{route('/')}}">MARKETING Y PUBLICIDAD PELAYO </a>
         </div>
     </footer>

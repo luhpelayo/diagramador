@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ING. FINANCIERA</title>
+    <title>SOFTPELAYO</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{asset('images/images/finanzas.png')}}" type="image/x-icon" />

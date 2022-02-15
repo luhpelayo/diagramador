@@ -26,7 +26,7 @@
     @foreach($tramites as $tramite)
          <tr>
             <th>
-                @if($tramite->estado->estado == 'Recibido')
+                @if($tramite->estado->estado == 'Nivel4')
                     <span class="label label-info">Recibido</span>
                 @else
                     <span class="label label-danger">Derivado</span>
@@ -34,8 +34,8 @@
 
              </th>    
              <td>{{ $tramite->created_at}}</td>
-             <td>{{ $tramite->nroficio }}</td> 
-             <td>{{ $tramite->referencia }}</td>
+             <td>{{ $tramite->nromodelo }}</td> 
+             <td>{{ $tramite->nombreproyecto }}</td>
              <td>{{ $tramite->tipo }}</td>
              <td>{{ $tramite->user->name }}</td>    
            

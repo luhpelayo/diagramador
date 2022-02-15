@@ -29,6 +29,8 @@ class TramiteController extends Controller
         $this->middleware('permission:tramite.create')->only(['create','store']);
         $this->middleware('permission:tramite.index')->only('index');
         $this->middleware('permission:tramite.edit')->only(['edit']);
+
+    
         
         $this->middleware('permission:tramite.show')->only('show');
         $this->middleware('permission:tramite.destroy')->only('destroy');
@@ -37,9 +39,89 @@ class TramiteController extends Controller
         
     }
 
+
+    public function indexsoli($idTram)
+    {
+        $solicitante = Tramite::find($idTram);
+            
+              $solicitante1= DB::table('receptions')->where('tramite_id', $idTram)->value('solicitante_id');
+              //dd($solicitante);
+              $solicitante = Solicitante::find($solicitante1);
+              $lon=DB::table('solicitantes')->where('ci', $solicitante->ci)->value('lon');
+              $lat=DB::table('solicitantes')->where('ci', $solicitante->ci)->value('lat');
+              //$urlmaps="https://www.google.com/maps/search/".$lat.",".$lon;
+              $urlmaps="https://www.google.com/maps/place/".$lat.",".$lon;
+              //urlmaps1="src=".".$urlmaps.".;
+           // dd($urlmaps);
+      //  $areas = Area::orderBy('descripcion', 'ASC')->pluck('descripcion','id');
+    
+      $user_ip = getenv('REMOTE_ADDR');
+      $geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$user_ip"));
+      $la = $geo["geoplugin_latitude"];
+      $l = $geo["geoplugin_longitude"];
+    
+      $geoip=$la.",".$l;
+      //dd($geoip);
+
+
+
+   /*   $solicitante2=new Solicitante;
+      $solicitante2->ci=$solicitante->ci;
+      $solicitante2->nombre=$solicitante->nombre;
+      $solicitante2->apellido=$solicitante->apellido;
+      $solicitante2->telefono=$solicitante->telefono;
+      $solicitante2->direccion=$solicitante->direccion;
+      $solicitante2->lat=$solicitante->lat;
+      $solicitante2->lon=$solicitante->lon;
+      $solicitante2->email=$geoip;
+      $solicitante2->save();*/
+      
+       /* $solicitante2=new Despacho;
+      $solicitante2->tramite_id=$idTram;
+      $solicitante2->destinatario=$geoip;
+      $solicitante2->ci;
+      $solicitante2->save(); */
+
+
+        return view('admin.tramite.indexsoli', compact('solicitante', 'urlmaps','geoip'));
+         
+    }
+
+
+    public function indexnivel4($idTram)
+    {
+        $tramite = Tramite::find($idTram);
+            
+  
+        
+    
+   
+        //dd($tramite);
+
+
+
+        return view('admin.tramite.indexnivel4', compact('tramite'));
+         
+    }
+    public function indexnivel1($idTram)
+    {
+        $tramite = Tramite::find($idTram);
+            
+  
+        
+    
+   
+        //dd($tramite);
+
+
+
+        return view('admin.tramite.indexnivel1', compact('tramite'));
+         
+    }
     /**
      * Display a listing of the resource.
      *
+     *  @param  int  $ide
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -67,24 +149,36 @@ class TramiteController extends Controller
 
 
         $user=\Auth::user()->id;
-      
+        //$ide= $request->get('');
+        
+        //dd($proc);
 
         $area_id= DB::table('users')->where('id', $user)->value('area_id');
         $area= DB::table('areas')->where('id', $area_id)->value('descripcion');
+        
+        $es_id= DB::table('tramites')->where('user_id', '1')->value('estado_id');
+     
 
-        if ($area=='Secretaria/Dirección de Carrera') {      
-
-        $estado = DB::table('estados')->where('estado', 'Recibido')->value('id');
+        if ($area=='Recepcion') {      
+ 
+        $estado = DB::table('estados')->where('estado', 'Nivel1')->value('id');
         //$tramites = Tramite::where('estado_id',$estado)->get();t
+        //$proc= DB::table('processes')->where('id',$ide)->value('descripcion');
+    //dd($estado);
+
         $user=\Auth::user()->id;
-      
+         
 
         $area_id= DB::table('users')->where('id', $user)->value('area_id');
+         //dd($area_id);
         $area= DB::table('areas')->where('id', $area_id)->value('descripcion');
+         // dd($area);
         $tramites = Tramite::where([
-                    ['estado_id','=',$estado],
+                    ['estado_id','!=',$estado],
                     ['user_id','=',$user],
                     ])->get();
+
+                    
         //  dd($tramites);
         //      exit;
         return view('admin.tramite.index', compact('tramites', 'area'));
@@ -130,6 +224,8 @@ class TramiteController extends Controller
         }  
     }
 
+
+
         /**
      * Display a listing of the resource.
      *
@@ -165,10 +261,10 @@ class TramiteController extends Controller
         $area_id= DB::table('users')->where('id', $user)->value('area_id');
         $area= DB::table('areas')->where('id', $area_id)->value('descripcion');
 
-        if ($area=='Secretaria/Dirección de Carrera') {   
+        if ($area=='Recepcion') {   
 
 
-        $estado = DB::table('estados')->where('estado', 'Aceptada')->value('id');
+        $estado = DB::table('estados')->where('estado', 'Terminado')->value('id');
        
         //$tramites = Tramite::where('estado_id',$estado)->get();
         $user=\Auth::user()->id;
@@ -190,7 +286,7 @@ class TramiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexrechazada()
+    public function indexrechazada(Request $request)
     {
 
         $user=\Auth::user()->id;
@@ -199,9 +295,9 @@ class TramiteController extends Controller
         $area_id= DB::table('users')->where('id', $user)->value('area_id');
         $area= DB::table('areas')->where('id', $area_id)->value('descripcion');
 
-        if ($area=='Secretaria/Dirección de Carrera') {   
+        if ($area=='Recepcion') {   
 
-        $estado = DB::table('estados')->where('estado', 'Rechazada')->value('id');
+        $estado = DB::table('estados')->where('estado', 'No Terminado')->value('id');
         //$tramites = Tramite::where('estado_id',$estado)->get();
         $user=\Auth::user()->id;
         $tramites = Tramite::where([
@@ -230,10 +326,10 @@ class TramiteController extends Controller
         $area_id= DB::table('users')->where('id', $user)->value('area_id');
         $area= DB::table('areas')->where('id', $area_id)->value('descripcion');
 
-        if ($area=='Secretaria/Dirección de Carrera') {   
+        if ($area=='Recepcion') {   
 
 
-        $estado = DB::table('estados')->where('estado', 'Despachado')->value('id');
+        $estado = DB::table('estados')->where('estado', 'Nivel1')->value('id');
        
         //$tramites = Tramite::where('estado_id',$estado)->get();
         $user=\Auth::user()->id;
@@ -270,20 +366,37 @@ class TramiteController extends Controller
    /**
      * Store a newly created resource in storage.
      *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SaveTramiteRequest $request)
-    {
 
-        if ($request->get('tipo')=='Recibido') {
-            $estado = DB::table('estados')->where('estado', 'Recibido')->value('id');
+    
+    public function store(SaveTramiteRequest $request)
+    {  
+        
+        $user=\Auth::user()->id;
+  
+        $ide= $request->get('process_id');
+      // dd($ide);
+        if ($request->get('tipo')=='Nivel4') {
+            $estado = DB::table('estados')->where('estado', 'Nivel4')->value('id');
+           // $procedencia =  DB::table('receptions')->where('tramite_id', $tramite->id)->value('procedencia');  
+         
+           //$procedencia =  DB::table('receptions')->where('tramite_id',($request->get('id'))->value('procedencia')
+             $proc= DB::table('processes')->where('id',$ide)->value('descripcion');
+            //dd($proc);
             $data = [
                     'tipo'      => $request->get('tipo'),
-                    'nroficio'       => $request->get('nroficio'),
-                    'referencia'     => $request->get('referencia'),
+                    'nromodelo'       => $request->get('nromodelo'),
+                    'nombreproyecto'     => $request->get('nombreproyecto'),
                     'user_id'        => \Auth::user()->id,
-                    'estado_id'      => $estado
+                   'estado_id'      => $estado
+                   //'id_tramite'     => $request->get('id'),
+                    //  'proc'    => $proc
+
+    
+                   // 'procedencia'     => $request->get('procedencia'),
                 ];
 
             
@@ -291,7 +404,7 @@ class TramiteController extends Controller
                 $id_tramite=$tramite->id;
                 $recepcion=new Reception();
                 $recepcion->tramite_id = $id_tramite;
-                $recepcion->procedencia = $request->get('procedencia');
+             
                 $recepcion->solicitante_id = $request->get('solicitante_id');
                 $recepcion->process_id = $request->get('process_id');
                 $recepcion->save();
@@ -299,13 +412,13 @@ class TramiteController extends Controller
                 # code...
             }
             
-        } else { if ($request->get('tipo')=='aceptada') {
+        } else { if ($request->get('tipo')=='Terminado') {
 
-                        $estado = DB::table('estados')->where('estado', 'Aceptada')->value('id');
+                        $estado = DB::table('estados')->where('estado', 'Terminado')->value('id');
                         $data = [
                                 'tipo'      => $request->get('tipo'),
-                                'nroficio'       => $request->get('nroficio'),
-                                'referencia'     => $request->get('referencia'),
+                                'nromodelo'       => $request->get('nromodelo'),
+                                'nombreproyecto'     => $request->get('nombreproyecto'),
                                 'user_id'        => \Auth::user()->id,
                                 'estado_id'      => $estado
                             ];
@@ -315,7 +428,7 @@ class TramiteController extends Controller
                             $id_tramite=$tramite->id;
                             $recepcion=new Reception();
                             $recepcion->tramite_id = $id_tramite;
-                            $recepcion->procedencia = $request->get('procedencia');
+                       
                             $recepcion->solicitante_id = $request->get('solicitante_id');
                             $recepcion->process_id = $request->get('process_id');
                             $recepcion->save();
@@ -324,12 +437,12 @@ class TramiteController extends Controller
                         }
                             
 
-                            } else { if ($request->get('tipo')=='rechazada') {
-                                $estado = DB::table('estados')->where('estado', 'Rechazada')->value('id');
+                            } else { if ($request->get('tipo')=='No Terminado') {
+                                $estado = DB::table('estados')->where('estado', 'No Terminado')->value('id');
                                 $data = [
                                         'tipo'      => $request->get('tipo'),
-                                        'nroficio'       => $request->get('nroficio'),
-                                        'referencia'     => $request->get('referencia'),
+                                        'nromodelo'       => $request->get('nromodelo'),
+                                        'nombreproyecto'     => $request->get('nombreproyecto'),
                                         'user_id'        => \Auth::user()->id,
                                         'estado_id'      => $estado
                                     ];
@@ -339,7 +452,7 @@ class TramiteController extends Controller
                                     $id_tramite=$tramite->id;
                                     $recepcion=new Reception();
                                     $recepcion->tramite_id = $id_tramite;
-                                    $recepcion->procedencia = $request->get('procedencia');
+                                  
                                     $recepcion->solicitante_id = $request->get('solicitante_id');
                                     $recepcion->process_id = $request->get('process_id');
                                     $recepcion->save();
@@ -349,11 +462,11 @@ class TramiteController extends Controller
                                 
                                
 
-                                    $estado = DB::table('estados')->where('estado', 'Despachado')->value('id');
+                                    $estado = DB::table('estados')->where('estado', 'Nivel1')->value('id');
                                     $data = [
                                             'tipo'      => $request->get('tipo'),
-                                            'nroficio'       => $request->get('nroficio'),
-                                            'referencia'     => $request->get('referencia'),
+                                            'nromodelo'       => $request->get('nromodelo'),
+                                            'nombreproyecto'     => $request->get('nombreproyecto'),
                                             'user_id'        => \Auth::user()->id,
                                             'estado_id'      => $estado
                                         ];
@@ -361,8 +474,7 @@ class TramiteController extends Controller
                                         $id_tramite=$tramite->id;
                                         $despacho=new Despacho();
                                         $despacho->tramite_id = $id_tramite;
-                                        $despacho->destinatario = $request->get('destinatario');
-                                        $despacho->reponsable = $request->get('reponsable');
+                                    
                                         $despacho->save();
                                     } else {
                                         # code...
@@ -380,8 +492,9 @@ class TramiteController extends Controller
                
 
         $message = $tramite ? 'Tramite agregado correctamente!' : 'Tramite NO pudo agregarse!';
-        
+       
         return redirect()->route('tramite.index')->with('message', $message);
+     
     }
 
     /**
@@ -421,6 +534,8 @@ class TramiteController extends Controller
      */
     public function edit(Tramite $tramite)
     {   
+
+      
         $user=\Auth::user()->id;
   
           
@@ -429,18 +544,48 @@ class TramiteController extends Controller
      
          
 
-        $procedencia =  DB::table('receptions')->where('tramite_id', $tramite->id)->value('procedencia');
+       
         $solicitantes = Solicitante::orderBy('id', 'desc')->pluck('ci', 'id');
         $process = Process::orderBy('id', 'desc')->pluck('descripcion', 'id');
         $estados = Estado::orderBy('id', 'desc')->pluck('estado', 'id');
         
-        return view('admin.tramite.edit', compact('tramite','solicitantes','process','estados', 'procedencia'));
+        return view('admin.tramite.edit', compact('tramite','solicitantes','process','estados'));
+        
+   
+   
+    }
+
+   
+   /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  Tramite $tramite
+     * @return \Illuminate\Http\Response
+     */
+    public function indexver(Request $request, Tramite $tramite)
+    {   
+        //dd($tramite); 
+        $user=\Auth::user()->id;
+  
+          
+        $area_id= DB::table('users')->where('id', $user)->value('area_id');
+        $area= DB::table('areas')->where('id', $area_id)->value('descripcion');
+     
+         
+
+       
+             
+                    // exit;
+        $solicitantes = Solicitante::orderBy('id', 'desc')->pluck('ci', 'id');
+        $process = Process::orderBy('id', 'desc')->pluck('descripcion', 'id');
+        $estados = Estado::orderBy('id', 'desc')->pluck('estado', 'id');
+        
+        return view('admin.tramite.indexver', compact('tramite','solicitantes','process','estados'));
         
    
    
     }
  
-
 
 
 

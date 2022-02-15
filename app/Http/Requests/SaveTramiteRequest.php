@@ -25,8 +25,10 @@ class SaveTramiteRequest extends FormRequest
     {
        return [
             'tipo'        => 'required',
-            'nroficio'         => 'required',
-            'referencia'       => 'required'
+            'nromodelo'         => 'required',
+            'nombreproyecto'       => 'required',
+         //   'process_desc'       => 'required'
+          
         ];
     }
 }

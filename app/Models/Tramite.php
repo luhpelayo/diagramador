@@ -8,12 +8,14 @@ class Tramite extends Model
 {
     protected $table = 'tramites';
 
-	protected $fillable = ['tipo','nroficio','referencia', 'user_id', 'estado_id'];
+	protected $fillable = ['tipo','nromodelo','nombreproyecto', 'user_id', 'estado_id'];
 
 	public function estado()
     {
         return $this->belongsTo('App\Models\Estado');
     }
+
+  
 
     public function derivacions()
     {
