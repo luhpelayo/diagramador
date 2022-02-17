@@ -37,7 +37,7 @@
                      !!}
                 </div>
                 <div class="form-group" id="nromodelo" style="display: block;">
-                    <label for="nromodelo">nro. Modelo:</label>
+                    <label for="nromodelo">Privacidad:</label>
                     {!! 
                         Form::text(
                             'nromodelo', 
@@ -72,7 +72,20 @@
                       ) 
                   !!}
                 </div>
-           
+                <div class="form-group" id="mySavedModel" style="display: block;">
+                  <label for="mySavedModel">Codigo:</label>
+                  {!! 
+                      Form::text(
+                          'mySavedModel', 
+                          null, 
+                          array(
+                              'class'=>'form-control',
+                              'placeholder' => 'Ingrese nombre...',
+                                            'autofocus' => 'autofocus'
+                          )
+                      ) 
+                  !!}
+                </div>
                 <div class="form-group" id="proc" style="display: block;">
                       <label class="control-label" for="process_id">Proceso:</label>
                       {!! Form::select('process_id', $process, null, ['class' => 'form-control','id'=>'proces']) !!}

@@ -4,7 +4,7 @@
 </div>
 
   <div class="form-group">
-      <label class="control-label" for="area_id">Oficinas</label>
+      <label class="control-label" for="area_id">Username</label>
       {!! Form::select('area_id', $areas, null, ['class' => 'form-control']) !!}
   </div>
 <hr>

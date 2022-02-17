@@ -3,7 +3,7 @@
 <div class="page-header text-center">
     <h1> MODELO C4 NIVEL 4
         @can('tramite.create') 
-        <a href="{{ route('tramite.create') }}" class="btn btn-success"><i class="fa fa-plus-circle"></i> Nuevo</a>
+        <a href="{{ route('tramite.create') }}" class="btn btn-success"><i class="fa fa-plus-circle"></i> Crear Nuevo</a>
         @endcan
     </h1>
 </div>
@@ -46,21 +46,19 @@
            
             <td>
              
- 
-             
-                <a href="{{ route('derivacion', $tramite->id) }}" class="btn btn-sm btn-info">
-                    <i class="fa fa-send"></i>
+                <a href="{{ route('tramite.indexnivel4', $tramite->id) }}" class="btn btn-primary">
+                    <i class="fa fa-pencil-square"></i> Pizarra  
                 </a>
              
+                @can('tramite.create') 
+                <a href="{{ route('derivacion', $tramite->id) }}" class="btn btn-sm btn-info">
+                    <i class="fa fa-send"> Compartir</i>
+                </a>
+                @endcan 
         
             
                 
                 
-                @can('tramite.edit')
-                <a href="{{ route('tramite.edit', $tramite->id) }}" class="btn btn-sm btn-primary">
-                    <i class="fa fa-pencil-square"></i>
-                </a>
-                @endcan
 
                @can('roles.destroy')
               {!! Form::open(['route' => ['tramite.destroy', $tramite],'style'=>'display:inline']) !!}
@@ -70,9 +68,7 @@
                         </button>
               {!! Form::close() !!}  
               @endcan 
-              <a href="{{ route('tramite.indexnivel4', $tramite->id) }}" class="btn btn-primary">
-                    <i class="fa fa-pencil-square"></i> Pizarra
-                </a>
+            
              
             </td> 
         </tr>

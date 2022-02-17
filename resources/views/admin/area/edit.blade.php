@@ -6,8 +6,8 @@
  
         <div class="page-header  text-center">
            <h1>
-            <i class="fa fa-university"style="color:green"></i>
-              AERAS <small>[Editar Area]</small>
+            <i class="fa fa-user"style="color:green"></i>
+              Lista de Usuarios <small>[Editar]</small>
           </h1>
         </div><!-- /.box-header -->             
     <div class="col-xs-12 col-md-8 col-md-offset-2 col-xl-6 col-xl-offset-3">
@@ -21,7 +21,7 @@
             <input type="hidden" name="_method" value="PUT">
              
             <div class="box-body col-xs-12">
-                <label for="description">Descripción:</label>
+                <label for="description">Username:</label>
                 
                 {!! 
                     Form::text(

@@ -47,19 +47,18 @@
              
  
              
-                <a href="{{ route('derivacion', $tramite->id) }}" class="btn btn-sm btn-info">
-                    <i class="fa fa-send"></i>
+            <a href="{{ route('tramite.indexnivel1', $tramite->id) }}" class="btn btn-primary">
+                    <i class="fa fa-pencil-square"></i> Pizarra  
                 </a>
-             
-        
+                @can('tramite.create') 
+                <a href="{{ route('derivacion', $tramite->id) }}" class="btn btn-sm btn-info">
+                    <i class="fa fa-send"> Compartir</i>
+                </a>
+                @endcan
 
                 
                 
-                @can('tramite.edit')
-                <a href="{{ route('tramite.edit', $tramite->id) }}" class="btn btn-sm btn-primary">
-                    <i class="fa fa-pencil-square"></i>
-                </a>
-                @endcan
+            
                @can('roles.destroy')
               {!! Form::open(['route' => ['tramite.destroy', $tramite],'style'=>'display:inline']) !!}
                         <input type="hidden" name="_method" value="DELETE">
@@ -69,9 +68,7 @@
               {!! Form::close() !!}  
               @endcan 
 
-              <a href="{{ route('tramite.indexnivel1', $tramite->id) }}" class="btn btn-primary">
-                    <i class="fa fa-pencil-square"></i> Pizarra
-                </a>
+            
             </td> 
         </tr>
     @endforeach

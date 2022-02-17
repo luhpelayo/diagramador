@@ -6,7 +6,7 @@
     <div class="page-header  text-center">
       <h1>
        <i class="fa fa-user-secret"style="color:green"></i>
-        SOLICITANTES <small>[Agregar Solicitante]</small>
+       ID REUNION <small>[Agregar]</small>
       </h1>
     </div>
   <div class="page">

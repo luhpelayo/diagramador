@@ -4,10 +4,10 @@
 <div class="box box-primary">
 <div class="page-header text-center">
     <h1>
-        <i class="fa fa-university"style="color:green"></i>
-        AREAS 
+        <i class="fa fa-user"style="color:green"></i>
+        Lista de Usuarios 
         @can('area.create') 
-        <a href="{{ route('area.create') }}" class="btn btn-warning"><i class="fa fa-plus-circle"></i> Area</a>
+        <a href="{{ route('area.create') }}" class="btn btn-warning"><i class="fa fa-plus-circle"></i> Agregar</a>
         @endcan
     </h1>
 </div>
@@ -28,7 +28,7 @@
         <thead>
             <tr>
              <th style="width:20px">Codigo</th>
-                <th>Descripcion</th>          
+                <th>Username</th>          
 
                 <th text-center style="width: 20px;">Acciónes </th>
             </tr>

@@ -7,7 +7,7 @@
         <div class="page-header  text-center">
            <h1>
            <i class="fa fa-user-secret"style="color:green"></i>
-              SOLICITANTES <small>[Editar Solicitante]</small>
+           ID REUNION <small>[Editar ]</small>
           </h1>
         </div><!-- /.box-header -->             
     <div class="page">

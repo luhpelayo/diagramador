@@ -57,7 +57,7 @@ class AreaController extends Controller
     //dd($area);
         $area->save();
 
-        $message = $area ? 'Area agregado correctamente!' : 'Area NO pudo agregarse!';
+        $message = $area ? ' agregado correctamente!' : ' NO pudo agregarse!';
         
         return redirect()->route('area.index')->with('message', $message);
     }
@@ -96,7 +96,7 @@ class AreaController extends Controller
     {
         $area->fill($request->all());
         $updated = $area->save();
-        $message = $updated ? 'Area actualizado correctamente!' : 'El Area NO pudo actualizarse!';
+        $message = $updated ? ' actualizado correctamente!' : ' NO pudo actualizarse!';
         
         return redirect()->route('area.index')->with('message', $message);
     }
@@ -111,7 +111,7 @@ class AreaController extends Controller
     {
         $deleted = $area->delete();
 
-        $message = $deleted ? 'Area eliminado correctamente!' : 'El area NO pudo eliminarse!';
+        $message = $deleted ? ' eliminado correctamente!' : 'NO pudo eliminarse!';
         
         return redirect()->route('area.index')->with('message', $message);
     }

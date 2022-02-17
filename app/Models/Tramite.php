@@ -8,7 +8,7 @@ class Tramite extends Model
 {
     protected $table = 'tramites';
 
-	protected $fillable = ['tipo','nromodelo','nombreproyecto', 'user_id', 'estado_id'];
+	protected $fillable = ['tipo','nromodelo','nombreproyecto','mySavedModel', 'user_id', 'estado_id'];
 
 	public function estado()
     {

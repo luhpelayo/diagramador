@@ -89,7 +89,7 @@ class DerivacionController extends Controller
         }
          
         
-         $message = $derivacion ? 'Tramite derivado correctamente!' : 'Tramite NO pudo ser derivado!';
+         $message = $derivacion ? 'Compartido correctamente!' : 'NO pudo compartir!';
          return redirect()->route('tramite.index')->with('message', $message);
     }
 

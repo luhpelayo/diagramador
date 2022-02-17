@@ -56,10 +56,7 @@
                   !!}
                 </div>
                
-                <div class="form-group" id="proc" style="display: block;">
-                      <label class="control-label" for="process_id">formulario:</label>
-                      {!! Form::select('process_id', $process, null, ['class' => 'form-control','id'=>'proces']) !!}
-                </div>
+              
 
               <div class="form-group" id="demos" style="display: none;">
 

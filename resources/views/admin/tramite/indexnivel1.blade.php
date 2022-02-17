@@ -138,7 +138,7 @@
             fromSpot: go.Spot.AllSides,
             toSpot: go.Spot.AllSides
           },
-          $(go.Shape, { fill: "lightyellow" }),
+          $(go.Shape, { fill: "lightblue" }),
           $(go.Panel, "Table",
             { defaultRowSeparatorStroke: "black" },
             // header
@@ -146,6 +146,7 @@
               {
                 row: 0, columnSpan: 2, margin: 3, alignment: go.Spot.Center,
                 font: "bold 12pt sans-serif",
+                
                 isMultiline: false, editable: true
               },
               new go.Binding("text", "name").makeTwoWay()),
@@ -157,7 +158,7 @@
               new go.Binding("itemArray", "properties"),
               {
                 row: 1, margin: 3, stretch: go.GraphObject.Fill,
-                defaultAlignment: go.Spot.Left, background: "lightyellow",
+                defaultAlignment: go.Spot.Left, background: "lightblue",
                 itemTemplate: propertyTemplate
               }
             ),
@@ -172,7 +173,7 @@
               new go.Binding("itemArray", "methods"),
               {
                 row: 2, margin: 3, stretch: go.GraphObject.Fill,
-                defaultAlignment: go.Spot.Left, background: "lightyellow",
+                defaultAlignment: go.Spot.Left, background: "lightblue",
                 itemTemplate: methodTemplate
               }
             ),
@@ -216,7 +217,7 @@
       var nodedata = [
         {
           key: 1,
-          name: "BankAccount",
+          name: "Modelo",
           properties: [
             { name: "owner", type: "String", visibility: "public" },
             { name: "balance", type: "Currency", visibility: "public", default: "0" }
@@ -228,7 +229,7 @@
         },
         {
           key: 11,
-          name: "Person",
+          name: "Usuario",
           properties: [
             { name: "name", type: "String", visibility: "public" },
             { name: "birth", type: "Date", visibility: "protected" }
@@ -239,7 +240,7 @@
         },
         {
           key: 12,
-          name: "Student",
+          name: "Reunion",
           properties: [
             { name: "classes", type: "List<Course>", visibility: "public" }
           ],
@@ -250,7 +251,7 @@
         },
         {
           key: 13,
-          name: "Professor",
+          name: "Nivel 4",
           properties: [
             { name: "classes", type: "List<Course>", visibility: "public" }
           ],
@@ -260,7 +261,7 @@
         },
         {
           key: 14,
-          name: "Course",
+          name: "Roles",
           properties: [
             { name: "name", type: "String", visibility: "public" },
             { name: "description", type: "String", visibility: "public" },

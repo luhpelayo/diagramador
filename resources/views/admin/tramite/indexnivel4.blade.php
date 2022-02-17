@@ -34,12 +34,8 @@
  <body>
   <script src="https://unpkg.com/gojs@2.2.2/release/go.js"></script>
   <p>
-    This is a minimalist HTML and JavaScript skeleton of the GoJS Sample
-    <a href="https://gojs.net/latest/samples/dynamicPorts.html">dynamicPorts.html</a>. It was automatically generated from a button on the sample page,
-    and does not contain the full HTML. It is intended as a starting point to adapt for your own usage.
-    For many samples, you may need to inspect the
-    <a href="https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/dynamicPorts.html">full source on Github</a>
-    and copy other files or scripts.
+  Nivel 4: El código
+    
   </p>
 
   
@@ -130,8 +126,9 @@
             },
             $(go.Shape, "Rectangle",
               {
-                fill: "#dbf6cb", stroke: null, strokeWidth: 0,
-                minSize: new go.Size(60, 60)
+                
+                fill: "#edebeb", stroke: "black" , strokeWidth: 0, 
+                minSize: new go.Size(200, 40)
               }),
             $(go.TextBlock,
               { margin: 10, textAlign: "center", font: "bold 14px Segoe UI,sans-serif", stroke: "#484848", editable: true },
@@ -261,7 +258,7 @@
 
       // support double-clicking in the background to add a copy of this data as a node
       myDiagram.toolManager.clickCreatingTool.archetypeNodeData = {
-        name: "Unit",
+        name: "User",
         leftArray: [],
         rightArray: [],
         topArray: [],
@@ -270,13 +267,13 @@
 
       myDiagram.contextMenu =
         $("ContextMenu",
-          makeButton("Paste",
+          makeButton("Pegar",
             (e, obj) => e.diagram.commandHandler.pasteSelection(e.diagram.toolManager.contextMenuTool.mouseDownPoint),
             o => o.diagram.commandHandler.canPasteSelection(o.diagram.toolManager.contextMenuTool.mouseDownPoint)),
-          makeButton("Undo",
+          makeButton("Deshacer",
             (e, obj) => e.diagram.commandHandler.undo(),
             o => o.diagram.commandHandler.canUndo()),
-          makeButton("Redo",
+          makeButton("Rehacer",
             (e, obj) => e.diagram.commandHandler.redo(),
             o => o.diagram.commandHandler.canRedo())
         );
@@ -436,7 +433,7 @@
       myDiagram.commitTransaction("removePort");
     }
 
-    // Remove all ports from the same side of the node as the clicked port.
+    // Remove all ports from the same side of the node as the clicked port. Elimine todos los puertos del mismo lado del nodo que el puerto en el que se hizo clic.
     function removeAll(port) {
       myDiagram.startTransaction("removePorts");
       const nodedata = port.part.data;
@@ -445,7 +442,7 @@
       myDiagram.commitTransaction("removePorts");
     }
 
-    // Change the color of the clicked port.
+    // Change the color of the clicked port. Cambie el color del puerto en el que se hizo clic.
     function changeColor(port) {
       myDiagram.startTransaction("colorPort");
       const data = port.data;
@@ -453,7 +450,7 @@
       myDiagram.commitTransaction("colorPort");
     }
 
-    // Use some pastel colors for ports
+    // Use some pastel colors for ports Usa algunos colores pastel para los puertos.
     function getPortColor() {
       const portColors = ["#fae3d7", "#d6effc", "#ebe3fc", "#eaeef8", "#fadfe5", "#6cafdb", "#66d6d1"]
       return portColors[Math.floor(Math.random() * portColors.length)];
@@ -463,10 +460,11 @@
     function save() {
       document.getElementById("mySavedModel").value = myDiagram.model.toJson();
       myDiagram.isModified = false;
+      var mySavedModel = document.getElementById('mySavedModel');
     }
     function load() {
       myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
-
+    
       // When copying a node, we need to copy the data that the node is bound to.
       // This JavaScript object includes properties for the node as a whole, and
       // four properties that are Arrays holding data for each port.
@@ -476,88 +474,163 @@
       // Link data includes the names of the to- and from- ports;
       // so the GraphLinksModel needs to set these property names:
       // linkFromPortIdProperty and linkToPortIdProperty.
+
+      // Al copiar un nodo, necesitamos copiar los datos a los que está vinculado el nodo.
+      // Este objeto JavaScript incluye propiedades para el nodo como un todo, y
+      // cuatro propiedades que son matrices que contienen datos para cada puerto.
+      // Esas matrices y objetos de datos de puerto también deben copiarse.
+      // Por lo tanto, tanto Model.copiesArrays como Model.copiesArrayObjects deben ser verdaderos.
+
+      // Los datos del enlace incluyen los nombres de los puertos de origen y destino;
+      // por lo que GraphLinksModel necesita establecer estos nombres de propiedad:
+      // linkFromPortIdProperty y linkToPortIdProperty.
     }
     window.addEventListener('DOMContentLoaded', init);
   </script>
 
 <div id="sample">
+
+
+
   <div id="myDiagramDiv" style="width: 600px; height: 500px; border: 1px solid black; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);"><canvas tabindex="0" width="598" height="498" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 598px; height: 498px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Este texto se muestra si su navegador no es compatible con el elemento Canvas HTML.</font></font></canvas><div style="position: absolute; overflow: auto; width: 598px; height: 498px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-  Agregar puerto a los nodos seleccionados:
-  </font></font><button onclick="addPort('top')"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cima</font></font></button>
-  <button onclick="addPort('bottom')"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fondo</font></font></button>
-  <button onclick="addPort('left')"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Izquierda</font></font></button>
-  <button onclick="addPort('right')"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Correcto</font></font></button>
-  <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-    Haga doble clic en el fondo del diagrama para agregar un nuevo nodo allí. </font><font style="vertical-align: inherit;">En este ejemplo, puede agregar puertos a un nodo seleccionado haciendo clic en los botones anteriores o usando el menú contextual. </font><font style="vertical-align: inherit;">Dibuje enlaces entre puertos arrastrándolos entre puertos. </font><font style="vertical-align: inherit;">Si selecciona un vínculo, puede volver a vincularlo o remodelarlo. </font><font style="vertical-align: inherit;">Haga clic con el botón derecho o mantenga presionado un puerto para que aparezca un menú contextual que le permite eliminarlo o cambiar su color.
-  </font></font></p>
-  <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-    El diagrama también usa un enlace personalizado para permitir un enrutamiento especial para ayudar a que los enlaces paralelos se eviten entre sí mediante las funciones anuladas </font></font><a href="../api/symbols/Link.html#computeEndSegmentLength" target="api"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Link.computeEndSegmentLength</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><a href="../api/symbols/Link.html#hasCurviness" target="api"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Link.hasCurviness</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> y </font></font><a href="../api/symbols/Link.html#computeCurviness" target="api"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Link.computeCurviness</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 
-    .
-  </font></font></p>
-  <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-    Consulte la </font></font><a href="../intro/ports.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">página Introducción a los puertos</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> para obtener una explicación de los puertos GoJS.
-  </font></font></p>
+  Agregar:
+  </font></font><button onclick="addPort('top')"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Container</font></font></button>
+  <button onclick="addPort('bottom')"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Class</font></font></button>
+  <button onclick="addPort('left')"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Associate</font></font></button>
+  <button onclick="addPort('right')"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Component</font></font></button>
+ 
   <div>
     <div>
+
+    @can('tramite.create') 
       <button id="SaveButton" onclick="save()" disabled=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ahorrar</font></font></button>
-      <button onclick="load()"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Carga</font></font></button><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-      Modelo de diagrama guardado en formato JSON:
+      
+      
+        
+     
+      <button href="{{route('/')}}" onclick="load()"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Carga</font></font></button><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+      @endcan
+      Guardar modelo de diagrama en formato JSON:
     </font></font></div>
 
-    <textarea id="mySavedModel" style="width:100%;height:250px">{ "class": "go.GraphLinksModel",
-  "copiesArrays": true,
-  "copiesArrayObjects": true,
-  "linkFromPortIdProperty": "fromPort",
-  "linkToPortIdProperty": "toPort",
-  "nodeDataArray": [
-{"key":1, "name":"Unit One", "loc":"101 204",
- "leftArray":[ {"portColor":"#fae3d7", "portId":"left0"} ],
- "topArray":[ {"portColor":"#d6effc", "portId":"top0"} ],
- "bottomArray":[ {"portColor":"#ebe3fc", "portId":"bottom0"} ],
- "rightArray":[ {"portColor":"#eaeef8", "portId":"right0"},{"portColor":"#fadfe5", "portId":"right1"} ] },
-{"key":2, "name":"Unit Two", "loc":"320 152",
- "leftArray":[ {"portColor":"#6cafdb", "portId":"left0"},{"portColor":"#66d6d1", "portId":"left1"},{"portColor":"#fae3d7", "portId":"left2"} ],
- "topArray":[ {"portColor":"#d6effc", "portId":"top0"} ],
- "bottomArray":[ {"portColor":"#eaeef8", "portId":"bottom0"},{"portColor":"#eaeef8", "portId":"bottom1"},{"portColor":"#6cafdb", "portId":"bottom2"} ],
- "rightArray":[  ] },
-{"key":3, "name":"Unit Three", "loc":"384 319",
- "leftArray":[ {"portColor":"#66d6d1", "portId":"left0"},{"portColor":"#fadfe5", "portId":"left1"},{"portColor":"#6cafdb", "portId":"left2"} ],
- "topArray":[ {"portColor":"#66d6d1", "portId":"top0"} ],
- "bottomArray":[ {"portColor":"#6cafdb", "portId":"bottom0"} ],
- "rightArray":[  ] },
-{"key":4, "name":"Unit Four", "loc":"138 351",
- "leftArray":[ {"portColor":"#fae3d7", "portId":"left0"} ],
- "topArray":[ {"portColor":"#6cafdb", "portId":"top0"} ],
- "bottomArray":[ {"portColor":"#6cafdb", "portId":"bottom0"} ],
- "rightArray":[ {"portColor":"#6cafdb", "portId":"right0"},{"portColor":"#66d6d1", "portId":"right1"} ] }
- ],
-  "linkDataArray": [
-{"from":4, "to":2, "fromPort":"top0", "toPort":"bottom0"},
-{"from":4, "to":2, "fromPort":"top0", "toPort":"bottom0"},
-{"from":3, "to":2, "fromPort":"top0", "toPort":"bottom1"},
-{"from":4, "to":3, "fromPort":"right0", "toPort":"left0"},
-{"from":4, "to":3, "fromPort":"right1", "toPort":"left2"},
-{"from":1, "to":2, "fromPort":"right0", "toPort":"left1"},
-{"from":1, "to":2, "fromPort":"right1", "toPort":"left2"}
- ]}
+ 
+          </div>
+
+    <textarea id="mySavedModel" style="width:100%;height:250px">{{ $tramite->mySavedModel }}  
+    
     </textarea>
+
+
+    @can('tramite.create') 
+    {!! Form::model($tramite, array('route' => array('tramite.update', $tramite))) !!}
+
+    <input type="hidden" name="_method" value="PUT">
+    <div class="form-group" id="mySavedModel" style="display: block;">
+          <label for="mySavedModel">Codigo Json:</label>
+          {!! 
+              Form::text(
+                  'mySavedModel', 
+                  null, 
+                  array(
+                      'class'=>'form-control',
+                      'placeholder' => 'Ingrese nombre...',
+                                    'autofocus' => 'autofocus'
+                  )
+              ) 
+          !!}
+        </div>
+    <div class="form-group">
+          <label class="control-label" for="tipo">Modelo:</label>
+            {!! Form:: select(
+                     'tipo',
+                        [
+                          
+                          'Nivel4' => 'Nivel 4',
+                       
+                        ],
+                        null,
+                           ['
+                             class'=>'form-control','id'=>'SelectRecep'
+                           ]
+                      )
+             !!}
+        </div>
+        <div class="form-group" id="nromodelo" style="display: block;">
+            <label for="nromodelo">Privacidad:</label>
+            {!! 
+                Form::text(
+                    'nromodelo', 
+                    null, 
+                    array(
+                        'class'=>'form-control',
+                        'placeholder' => 'Ingrese numero...',
+                                      'autofocus' => 'autofocus'
+                    )
+                ) 
+            !!}
+        </div>
+        <div class="form-group" id="remitente" style="display: block;">
+              
+              <label class="control-label" for="solicitante_id">ID Reunion:</label>
+
+
+              {!! Form::select('solicitante_id', $solicitantes, null, ['class' => 'form-control']) !!}
+        </div>
+       
+        <div class="form-group" id="nombreproyecto" style="display: block;">
+          <label for="nombreproyecto">Nombre Proyecto:</label>
+          {!! 
+              Form::text(
+                  'nombreproyecto', 
+                  null, 
+                  array(
+                      'class'=>'form-control',
+                      'placeholder' => ' ',
+                                    'autofocus' => 'autofocus'
+                  )
+              ) 
+          !!}
+        </div>
+    
+     
+
+      <div class="form-group" id="demos" style="display: none;">
+
+           <ul class="list-unstyled">
+             <li>
+              
+                   <input type="checkbox" name="cuadro" value=" " > <br><br>
+              
+              </li>
+          </ul>
+       </div>  
+      <br> 
+
+  <div class="form-group">
+      {!! Form::submit('Guardar', array('class'=>'btn btn-primary')) !!}
+      <a href="{{ route('tramite.index') }}" class="btn btn-warning">Cancelar</a>
+  </div>
+
+
+
+
+
+{!! Form::close() !!}
+@endcan
+
   </div>
 
   
-<p class="text-xs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GoJS versión 2.2.2. </font><font style="vertical-align: inherit;"></font></font></p></div>
+
    
   </body>
 
-  
-           @can('tramite.create') 
-           <div class="box-body col-xs-12">
-                {!! Form::submit('Actualizar', array('class'=>'btn btn-primary')) !!}
-                <a href="" target="_blank" class="btn btn-warning">GUARDAR </a>
-            </div>
-        @endcan
-     
-        
+ 
     </div>  
   </div>
+
+
+
+
 
 @stop

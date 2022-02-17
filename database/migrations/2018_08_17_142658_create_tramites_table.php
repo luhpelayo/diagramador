@@ -18,7 +18,8 @@ class CreateTramitesTable extends Migration
             $table->string('tipo',60);
             $table->string('nromodelo', 30);
             $table->string('nombreproyecto', 255);
-                 
+            $table->text('mySavedModel', 60000);    
+
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')
                   ->onDelete('cascade')

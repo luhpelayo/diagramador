@@ -92,15 +92,27 @@ class TramiteController extends Controller
     {
         $tramite = Tramite::find($idTram);
             
-  
         
-    
+        $user=\Auth::user()->id;
+  
+          
+        $area_id= DB::table('users')->where('id', $user)->value('area_id');
+        $area= DB::table('areas')->where('id', $area_id)->value('descripcion');
+     
+         
+
+       
+        $solicitantes = Solicitante::orderBy('id', 'desc')->pluck('ci', 'id');
+        $process = Process::orderBy('id', 'desc')->pluck('descripcion', 'id');
+        $estados = Estado::orderBy('id', 'desc')->pluck('estado', 'id');
+        
+        return view('admin.tramite.indexnivel4', compact('tramite','solicitantes','process','estados'));
    
-        //dd($tramite);
+      // dd($tramite);
 
 
 
-        return view('admin.tramite.indexnivel4', compact('tramite'));
+        //return view('admin.tramite.indexnivel4', compact('tramite'));
          
     }
     public function indexnivel1($idTram)
@@ -376,10 +388,18 @@ class TramiteController extends Controller
     {  
         
         $user=\Auth::user()->id;
-  
+        $pr=4;
         $ide= $request->get('process_id');
       // dd($ide);
         if ($request->get('tipo')=='Nivel4') {
+
+            $mySavedModel = <<<'EOD'
+            { "class": "GraphLinksModel",   "nodeDataArray": [ {"name":"USER","leftArray":[{"portId":"left0","portColor":"#eaeef8"}],"rightArray":[],"topArray":[],"bottomArray":[],"key":-1,"loc":"-42 -117.59375"}, {"name":"cliente","leftArray":[{"portId":"left0","portColor":"#fadfe5"}],"rightArray":[],"topArray":[],"bottomArray":[{"portId":"bottom0","portColor":"#6cafdb"},{"portId":"bottom1","portColor":"#fae3d7"}],"key":-2,"loc":"-127 16.40625"}, {"name":"roles","leftArray":[{"portId":"left0","portColor":"#fadfe5"}],"rightArray":[],"topArray":[],"bottomArray":[{"portId":"bottom0","portColor":"#6cafdb"},{"portId":"bottom1","portColor":"#fae3d7"}],"key":-3,"loc":"125 16.40625"}, {"name":"compra","leftArray":[{"portId":"left0","portColor":"#fadfe5"}],"rightArray":[],"topArray":[],"bottomArray":[{"portId":"bottom0","portColor":"#6cafdb"},{"portId":"bottom1","portColor":"#fae3d7"}],"key":-4,"loc":"-224 123.40625"} ],   "linkDataArray": [ {"from":-1,"to":-2,"points":[-46,-97.59375,-46,-87.59375,-46,-34.59375,-131,-34.59375,-131,-13.59375,-131,-3.59375]}, {"from":-3,"to":-1,"points":[17,20.40625,7,20.40625,7,-34.59375,68,-34.59375,68,-117.59375,58,-117.59375]}, {"from":-2,"to":-4,"points":[-131,44.40625,-131,54.40625,-131,89.90625,-228,89.90625,-228,93.40625,-228,103.40625]} ]}  
+    
+        EOD;
+      
+
+
             $estado = DB::table('estados')->where('estado', 'Nivel4')->value('id');
            // $procedencia =  DB::table('receptions')->where('tramite_id', $tramite->id)->value('procedencia');  
          
@@ -390,8 +410,9 @@ class TramiteController extends Controller
                     'tipo'      => $request->get('tipo'),
                     'nromodelo'       => $request->get('nromodelo'),
                     'nombreproyecto'     => $request->get('nombreproyecto'),
+                    'mySavedModel'     => $mySavedModel,
                     'user_id'        => \Auth::user()->id,
-                   'estado_id'      => $estado
+                    'estado_id'      => $estado
                    //'id_tramite'     => $request->get('id'),
                     //  'proc'    => $proc
 
@@ -406,7 +427,7 @@ class TramiteController extends Controller
                 $recepcion->tramite_id = $id_tramite;
              
                 $recepcion->solicitante_id = $request->get('solicitante_id');
-                $recepcion->process_id = $request->get('process_id');
+                $recepcion->process_id = $pr;
                 $recepcion->save();
             } else {
                 # code...
@@ -426,11 +447,13 @@ class TramiteController extends Controller
                         
                         if ($tramite = Tramite::create($data)) {
                             $id_tramite=$tramite->id;
+                        
+                            
                             $recepcion=new Reception();
                             $recepcion->tramite_id = $id_tramite;
                        
                             $recepcion->solicitante_id = $request->get('solicitante_id');
-                            $recepcion->process_id = $request->get('process_id');
+                            $recepcion->process_id = $pr;
                             $recepcion->save();
                         } else {
                             # code...
@@ -454,7 +477,7 @@ class TramiteController extends Controller
                                     $recepcion->tramite_id = $id_tramite;
                                   
                                     $recepcion->solicitante_id = $request->get('solicitante_id');
-                                    $recepcion->process_id = $request->get('process_id');
+                                    $recepcion->process_id = $pr;
                                     $recepcion->save();
                                 } 
                             } else {
@@ -491,7 +514,7 @@ class TramiteController extends Controller
     
                
 
-        $message = $tramite ? 'Tramite agregado correctamente!' : 'Tramite NO pudo agregarse!';
+        $message = $tramite ? 'Agregado correctamente!' : ' NO pudo agregarse!';
        
         return redirect()->route('tramite.index')->with('message', $message);
      
@@ -612,7 +635,7 @@ class TramiteController extends Controller
 
         
         $updated = $tramite->save();
-        $message = $updated ? 'Tramite actualizado correctamente!' : 'El tramite NO pudo actualizarse!';
+        $message = $updated ? ' Actualizado correctamente!' : ' NO pudo actualizarse!';
         
         return redirect()->route('tramite.index')->with('message', $message);
     }
@@ -631,7 +654,7 @@ class TramiteController extends Controller
     {
         $deleted = $tramite->delete();
 
-        $message = $deleted ? 'Tramite eliminado correctamente!' : 'El tramite NO pudo eliminarse!';
+        $message = $deleted ? 'eliminado correctamente!' : 'NO pudo eliminarse!';
         
         return redirect()->route('tramite.index')->with('message', $message);
     }

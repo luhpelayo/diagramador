@@ -7,7 +7,7 @@
         <div class="page-header  text-center">
            <h1>
            <i class="fa fa-envelope"style="color:green"></i>
-              DERIVACIÓN <small>[Agregar Destinatario]</small>
+              COMPARTIR <small>[Agregar Destinatario]</small>
           </h1>
         </div><!-- /.box-header -->             
     <div class="page">
@@ -20,7 +20,7 @@
        
 
             <div class="form-group col-xs-12">
-                    <label for="observacion">Observacion:</label>
+                    <label for="observacion">Descripcion:</label>
                     {!! 
                         Form::textarea(
                             'observacion', 
@@ -34,7 +34,7 @@
                     !!}
             </div>
             <div class="form-group col-xs-12">
-              <label class="control-label" for="area_id">Area:</label>
+              <label class="control-label" for="area_id">Username:</label>
               {!! 
                 Form::select(
                     'area_id',
@@ -48,7 +48,7 @@
             </div>
             
             <div class="form-group col-xs-12">
-                {!! Form::submit('Derivar', array('class'=>'btn btn-primary')) !!}
+                {!! Form::submit('Compartir', array('class'=>'btn btn-primary')) !!}
                 <a href="{{ route('tramite.index') }}" class="btn btn-warning">Cancelar</a>
             </div>
         
