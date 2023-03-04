@@ -7,7 +7,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>LT</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Pizarra</b>Pelayo</span>
+          <span class="logo-lg"><b>Pizarra</b>diagramador</span>
 
         </a>
 
@@ -73,13 +73,7 @@
                @can('users.index')
                 <li><a href="{{route('users.index')}}"><i class="fa fa-circle-o"></i> Usuarios</a></li>
                @endcan
-               @can('roles.index')
-                <li><a href="{{route('roles.index')}}"><i class="fa fa-circle-o"></i> Roles</a></li>
-               @endcan
-               @can('permissions.index')
-                <li><a href="{{route('permissions.index')}}"><i class="fa fa-circle-o"></i> Permisos</a>
-                </li>
-                @endcan
+          
               </ul>
             </li>
            @endcan
@@ -91,9 +85,8 @@
                 <i class="fa fa-cog"></i> <span>Nuevo Proyecto</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                  @can('sliders.index')
-                  <li class="active"><a href="{{ route('sliders.index') }}"><i class="fa fa-circle-o"></i>Sliders</a></li>
-                  @endcan
+
+         
                   @can('area.index')
                   <li class="active"><a href="{{ route('area.index') }}"><i class="fa fa-circle-o"></i>Username</a></li>
                   @endcan
@@ -126,15 +119,9 @@
          
 
             <li class="treeview">
-              <a href="#">
-                <i class="fa fa-pie-chart"></i>
-                <span>Reportes</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
+             
               <ul class="treeview-menu">
-                <li><a href="{{ route('students.index') }}"><i class="fa fa-circle-o"></i>Estudiantes Data</a></li>
-                <li><a href="{{ route('report.index') }}"><i class="fa fa-circle-o"></i>Estudiantes Report</a></li>
-                {{--<li><a href="{{ route('report') }}"><i class="fa fa-circle-o"></i>Estudiantes Flot</a></li>--}}
+                  {{--<li><a href="{{ route('report') }}"><i class="fa fa-circle-o"></i>Estudiantes Flot</a></li>--}}
                 {{--<li><a href="{{ route('report') }}"><i class="fa fa-circle-o"></i>Estudiantes Inline charts</a></li>--}}
               </ul>
             </li>

@@ -12,10 +12,8 @@ class SlideController extends Controller
 {
     public function index(){
 
-        $noticias = DB::table('noticias')->orderBy('updated_at', 'desc')->paginate(3);
      
-     
-      return view('store.index',['homeActive' => true , 'slideImages' => SlideImage::all(),'noticias' => $noticias, 'noticiasActive' => true]);
+      return view('store.index',['homeActive' => true ]);
     }
 
     public function store(Request $request){

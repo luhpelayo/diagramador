@@ -42,17 +42,21 @@
 
   <div id="allSampleContent" class="p-4 w-full">
     <script id="code">
-    function init() {
-
+function init() {
+// Desde 2.2 también puede crear plantillas concisas con encadenamiento de métodos en lugar de GraphObject.make
+      // Para obtener más información, consulte https://gojs.net/latest/intro/buildingObjects.html
       // Since 2.2 you can also author concise templates with method chaining instead of GraphObject.make
       // For details, see https://gojs.net/latest/intro/buildingObjects.html
-      const $ = go.GraphObject.make;  //for conciseness in defining node templates
+      const $ = go.GraphObject.make;  //for conciseness in defining node templates 
+      //por concisión en la definición de la plantilla de nodo
 
       myDiagram =
         $(go.Diagram, "myDiagramDiv",  //Diagram refers to its DIV HTML element by id
+        //El diagrama se refiere a su elemento HTML DIV por id
           { "undoManager.isEnabled": true });
 
       // when the document is modified, add a "*" to the title and enable the "Save" button
+      // cuando se modifique el documento, agregue un "*" al título y habilite el botón "Guardar"
       myDiagram.addDiagramListener("Modified", e => {
         const button = document.getElementById("SaveButton");
         if (button) button.disabled = !myDiagram.isModified;
@@ -65,15 +69,18 @@
       });
 
       // To simplify this code we define a function for creating a context menu button:
+      // Para simplificar este código, definimos una función para crear un botón de menú contextual:
       function makeButton(text, action, visiblePredicate) {
         return $("ContextMenuButton",
           $(go.TextBlock, text),
           { click: action },
           // don't bother with binding GraphObject.visible if there's no predicate
+          // no se moleste en enlazar GraphObject.visible si no hay predicado
           visiblePredicate ? new go.Binding("visible", "", (o, e) => o.diagram ? visiblePredicate(o, e) : false).ofObject() : {});
       }
 
-      const nodeMenu =  // context menu for each Node
+      const nodeMenu =  // context menu for each Node menú contextual para cada nodo
+      
         $("ContextMenu",
           makeButton("Copy",
             (e, obj) => e.diagram.commandHandler.copySelection()),
@@ -108,6 +115,8 @@
 
       // the node template
       // includes a panel on each side with an itemArray of panels containing ports
+      // la plantilla del nodo
+      // incluye un panel en cada lado con un itemArray de paneles que contienen puertos
       myDiagram.nodeTemplate =
         $(go.Node, "Table",
           {
@@ -137,6 +146,11 @@
 
           // the Panel holding the left port elements, which are themselves Panels,
           // created for each item in the itemArray, bound to data.leftArray
+
+          // finaliza el cuerpo del Auto Panel
+
+          // el Panel que contiene los elementos del puerto izquierdo, que son en sí mismos Paneles,
+          // creado para cada elemento en itemArray, vinculado a data.leftArray
           $(go.Panel, "Vertical",
             new go.Binding("itemArray", "leftArray"),
             {
@@ -163,6 +177,11 @@
 
           // the Panel holding the top port elements, which are themselves Panels,
           // created for each item in the itemArray, bound to data.topArray
+
+          // finaliza el panel vertical
+
+          // el Panel que contiene los elementos del puerto superior, que son en sí mismos Paneles,
+          // creado para cada elemento en itemArray, vinculado a data.topArray
           $(go.Panel, "Horizontal",
             new go.Binding("itemArray", "topArray"),
             {
@@ -189,6 +208,10 @@
 
           // the Panel holding the right port elements, which are themselves Panels,
           // created for each item in the itemArray, bound to data.rightArray
+          // finaliza el panel horizontal
+
+          // el Panel que contiene los elementos del puerto correctos, que son en sí mismos Paneles,
+          // creado para cada elemento en itemArray, vinculado a data.rightArray
           $(go.Panel, "Vertical",
             new go.Binding("itemArray", "rightArray"),
             {
@@ -215,6 +238,11 @@
 
           // the Panel holding the bottom port elements, which are themselves Panels,
           // created for each item in the itemArray, bound to data.bottomArray
+
+          // finaliza el panel vertical
+
+          // el Panel que contiene los elementos del puerto inferior, que son en sí mismos Paneles,
+          // creado para cada elemento en itemArray, vinculado a data.bottomArray
           $(go.Panel, "Horizontal",
             new go.Binding("itemArray", "bottomArray"),
             {
@@ -241,6 +269,9 @@
         );  // end Node
 
       // an orthogonal link template, reshapable and relinkable
+      // fin del nodo
+
+      // una plantilla de enlace ortogonal, modificable y reenlazable
       myDiagram.linkTemplate =
         $(CustomLink,  // defined below
           {
@@ -279,9 +310,13 @@
         );
 
       // load the diagram from JSON data
+      // carga el diagrama desde datos JSON
       load();
-    }
+ }
 
+
+// Esta clase Link de enrutamiento personalizado intenta separar los enlaces paralelos entre sí.
+  // Esto supone que los puertos están alineados en una fila/columna en un lado del nodo.
 
   // This custom-routing Link class tries to separate parallel links from each other.
   // This assumes that ports are lined up in a row/column on a side of the node.
@@ -461,6 +496,10 @@
       document.getElementById("mySavedModel").value = myDiagram.model.toJson();
       myDiagram.isModified = false;
       var mySavedModel = document.getElementById('mySavedModel');
+
+      var jsonTextarea = document.getElementById("mySavedModel");
+    var jsonInput = document.getElementById("jsonInput");
+    jsonInput.value = jsonTextarea.value;
     }
     function load() {
       myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
@@ -486,6 +525,13 @@
       // linkFromPortIdProperty y linkToPortIdProperty.
     }
     window.addEventListener('DOMContentLoaded', init);
+
+   /* function setJsonToInput() {
+    var jsonTextarea = document.getElementById("mySavedModel");
+    var jsonInput = document.getElementById("jsonInput");
+    jsonInput.value = jsonTextarea.value;
+  }
+  <button onclick="setJsonToInput()">Cargar Json</button>*/
   </script>
 
 <div id="sample">
@@ -498,7 +544,7 @@
   <button onclick="addPort('bottom')"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Class</font></font></button>
   <button onclick="addPort('left')"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Associate</font></font></button>
   <button onclick="addPort('right')"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Component</font></font></button>
- 
+  
   <div>
     <div>
 
@@ -526,19 +572,20 @@
 
     <input type="hidden" name="_method" value="PUT">
     <div class="form-group" id="mySavedModel" style="display: block;">
-          <label for="mySavedModel">Codigo Json:</label>
-          {!! 
-              Form::text(
-                  'mySavedModel', 
-                  null, 
-                  array(
-                      'class'=>'form-control',
-                      'placeholder' => 'Ingrese nombre...',
-                                    'autofocus' => 'autofocus'
-                  )
-              ) 
-          !!}
-        </div>
+  <label for="jsonInput">Codigo Json:</label>
+  {!! 
+      Form::text(
+          'mySavedModel', 
+          null, 
+          array(
+              'class'=>'form-control',
+              'value' => 'mySavedModel',
+              'id' => 'jsonInput',
+              'autofocus' => 'autofocus'
+          )
+      ) 
+  !!}
+</div>
     <div class="form-group">
           <label class="control-label" for="tipo">Modelo:</label>
             {!! Form:: select(

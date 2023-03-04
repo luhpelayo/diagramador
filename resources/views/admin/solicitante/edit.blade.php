@@ -21,7 +21,7 @@
             <input type="hidden" name="_method" value="PUT">
              
             <div class="form-group col-xs-6">
-                <label for="ci">C.I.:</label>
+                <label for="ci">ID Reunion:</label>
                  {!! 
                   Form::text(
                       'ci', 
@@ -81,7 +81,7 @@
               !!}
           </div>
           <div class="form-group col-xs-6">
-              <label for="lat">Lat:</label>
+              <label for="lat">C.I.:</label>
               {!! 
                   Form::text(
                       'lat', 
@@ -93,7 +93,7 @@
               !!}
           </div>
           <div class="form-group col-xs-6">
-              <label for="Lon">Lon:</label>
+              <label for="Lon">Codigo Compartir:</label>
               {!! 
                   Form::text(
                       'lon', 

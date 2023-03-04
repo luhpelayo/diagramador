@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SOFTPELAYO</title>
+    <title>DIAGRAMADOR</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{asset('images/images/finanzas.png')}}" type="image/x-icon" />
@@ -43,7 +43,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 ">
-                    <a href="/"><img id="img-logo-ucr" class="img-responsive center-block" src="{{ asset('images/img_include/portada2.png')}}">  </a>
+
                 </div>
             </div>
         </div>
