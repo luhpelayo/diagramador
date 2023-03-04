@@ -3,61 +3,25 @@
 <div class="container box box-primary">
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-aqua">
-            <div class="inner">
-                <h3>{{ $recibido_count }}</h3>
-                <h4>Solicitudes Recibidos</h4>
-            </div>
-            <div class="icon">
-                <i class="fa fa-file-text-o"></i>
-            </div>
-            <!-- <a href="{{route('tramite.index')}}" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a> -->
-        </div>
+   
     </div><!-- ./col -->
    
 
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-green">
-            <div class="inner">
-                <h3>{{ $terminado_count }}</h3>
-                <h4>Solicitudes Terminados</h4>
-            </div>
-            <div class="icon">
-                <i class="fa fa-file-text-o"></i>
-            </div>
-            <!-- <a href="{{route('tramite.index')}}" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a> -->
-        </div>
+      
     </div><!-- ./col -->
 
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-red">
-            <div class="inner">
-                <h3>{{ $noterminado_count }}</h3>
-                <h4>Solicitudes No Terminados</h4>
-            </div>
-            <div class="icon">
-                <i class="fa fa-file-text-o"></i>
-            </div>
-            <!-- <a href="{{route('tramite.index')}}" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a> -->
-        </div>
+     
     </div><!-- ./col -->
 
 
 
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-orange">
-            <div class="inner">
-                <h3>{{$derivado_count}}</h3>
-                <h4>Sol. Derivados En Proceso</h4>
-            </div>
-            <div class="icon">
-                <i class="fa fa-file-text-o"></i>
-            </div>
-            <!-- <a href="{{route('tramite.index')}}" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a> -->
-        </div>
+   
     </div><!-- ./col -->
 
 
