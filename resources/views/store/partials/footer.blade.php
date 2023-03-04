@@ -14,7 +14,7 @@
                     </ul>
                     
                     <h2  style="padding-bottom:5px">¡Síguenos en nuestras redes sociales!</h2>
-                    <p><a href="https://forms.gle/qZ4VzP8F1xf5Ww5TA" target="_blank" ><h2>Ayúdanos a mejorar con una breve encuesta</h2> </A></p>
+                    <p><a href="" target="_blank" ><h2>Ayúdanos a mejorar con una breve encuesta</h2> </A></p>
                 
                 </div>
                 <div class="col-md-4 col-sm-6 footer_about quick">
